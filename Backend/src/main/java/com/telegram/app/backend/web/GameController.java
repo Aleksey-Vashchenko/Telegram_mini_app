@@ -15,7 +15,7 @@ import java.util.UUID;
 @Component
 @RequestMapping("/games")
 public class GameController {
-    private LobbyService<UUID, DefaultLobbyDto> lobbyService;
+    private final LobbyService<UUID, DefaultLobbyDto> lobbyService;
     @PostMapping("/{gameId}")
     public Question getQuestion(@PathVariable("gameId")UUID uuid){
         return lobbyService.getQuestion(uuid);
