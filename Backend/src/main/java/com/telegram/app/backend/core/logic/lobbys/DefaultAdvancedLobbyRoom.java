@@ -5,7 +5,7 @@ import com.telegram.app.backend.entity.Question;
 
 import java.util.UUID;
 
-public class DefaultAdvancedLobbyRoom extends AbstractLobby<UUID,AdvancedPlayer>
+public class DefaultAdvancedLobbyRoom extends AbstractLobbyRoom<UUID>
 {
 
     @Override

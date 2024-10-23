@@ -5,7 +5,7 @@ import com.telegram.app.backend.entity.Question;
 
 import java.util.UUID;
 
-public class DefaultClassicLobbyRoom extends AbstractLobby<UUID,ClassicPlayer> {
+public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
     @Override
     public Question generateQuestion() {
         return null;
@@ -13,6 +13,9 @@ public class DefaultClassicLobbyRoom extends AbstractLobby<UUID,ClassicPlayer> {
 
     @Override
     public UUID generateId() {
-        return UUID.randomUUID();
+        if(this.id==null){
+            this.id=UUID.randomUUID();
+        }
+        return this.id;
     }
 }

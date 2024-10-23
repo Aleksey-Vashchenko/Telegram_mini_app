@@ -1,5 +1,7 @@
 package com.telegram.app.backend.web;
 
+import com.telegram.app.backend.core.logic.lobbys.builders.ILobbyRoomBuilder;
+import com.telegram.app.backend.core.logic.lobbys.dto.DefaultLobbyDto;
 import com.telegram.app.backend.core.logic.service.LobbyService;
 import com.telegram.app.backend.entity.Question;
 import lombok.RequiredArgsConstructor;
@@ -13,15 +15,15 @@ import java.util.UUID;
 @Component
 @RequestMapping("/games")
 public class GameController {
-    private LobbyService<UUID> lobbyService;
+    private LobbyService<UUID, DefaultLobbyDto> lobbyService;
     @PostMapping("/{gameId}")
     public Question getQuestion(@PathVariable("gameId")UUID uuid){
         return lobbyService.getQuestion(uuid);
     }
 
     @PostMapping
-    public void createLobby(){
-        UUID gameId = lobbyService.createLobby();
+    public Object createLobby(@RequestBody DefaultLobbyDto dto){
+        return lobbyService.createLobby(dto);
     }
 
     @DeleteMapping("/{gameID}")
