@@ -1,17 +1,21 @@
 package com.telegram.app.backend.entity;
 
-import lombok.AllArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Table(name = "players")
-@AllArgsConstructor
+@Entity
 public class User {
     @Id
     private UUID uuid;
     private String userName;
-    private List<Short> packages;
+    @ManyToMany
+    @JoinTable(
+            name = "users_packages",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "package_id")
+    )
+    private List<QuestionPackage> packages;
 }

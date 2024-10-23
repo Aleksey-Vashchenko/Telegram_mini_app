@@ -2,20 +2,20 @@ package com.telegram.app.backend.entity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
-@Table("questions")
-@AllArgsConstructor
+@Table(name = "questions")
+@Entity
 public class Question {
     @Id
     private Integer id;
     private String content;
     private String tagsJson;
-    private short packLevel;
+    @ManyToOne
+    @JoinColumn(name = "package_id")
+    private QuestionPackage questionPackage;
 
     public List<String> getTags() {
         ObjectMapper mapper = new ObjectMapper();

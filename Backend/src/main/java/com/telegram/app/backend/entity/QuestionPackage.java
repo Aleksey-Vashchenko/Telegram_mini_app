@@ -1,14 +1,18 @@
 package com.telegram.app.backend.entity;
 
-import lombok.AllArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Table(name = "packages")
-@AllArgsConstructor
+@Entity
 public class QuestionPackage {
     @Id
     private Short id;
     private String name;
     private Float price;
+    @ManyToMany(mappedBy = "packages")
+    private List<User> userList;
+    @OneToMany(mappedBy = "questionPackage")
+    private List<Question> questions;
 }
