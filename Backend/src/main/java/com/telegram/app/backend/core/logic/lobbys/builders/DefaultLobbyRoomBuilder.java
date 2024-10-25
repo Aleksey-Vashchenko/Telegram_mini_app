@@ -1,9 +1,10 @@
 package com.telegram.app.backend.core.logic.lobbys.builders;
 
 
+import com.telegram.app.backend.core.logic.dto.DefaultLobbyDto;
 import com.telegram.app.backend.core.logic.lobbys.AbstractLobbyRoom;
 import com.telegram.app.backend.core.logic.lobbys.DefaultClassicLobbyRoom;
-import com.telegram.app.backend.core.logic.lobbys.dto.DefaultLobbyDto;
+
 
 import java.util.UUID;
 
