@@ -18,4 +18,14 @@ public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
         }
         return this.id;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
