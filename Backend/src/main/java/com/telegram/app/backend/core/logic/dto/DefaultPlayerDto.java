@@ -3,9 +3,11 @@ package com.telegram.app.backend.core.logic.dto;
 import com.telegram.app.backend.core.enums.Gender;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class DefaultPlayerDto {
     @NotNull
     private Integer id;
@@ -14,9 +16,10 @@ public class DefaultPlayerDto {
     @NotNull
     private Gender gender;
     @NotNull
-    private List<Gender> preferred;
-    private Integer pair;
-    private Integer difficultyTo;
-    private List<Integer> packages;
+    private List<Gender> preferredGenders;
+    private Short pairId;
+    private Short levelFrom;
+    private Short levelTo;
+    private List<Short> packages;
 
 }
