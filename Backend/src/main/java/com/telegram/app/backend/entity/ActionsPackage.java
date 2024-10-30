@@ -6,13 +6,13 @@ import java.util.List;
 
 @Table(name = "packages")
 @Entity
-public class QuestionPackage {
+public class ActionsPackage {
     @Id
     private Short id;
     private String name;
     private Float price;
     @ManyToMany(mappedBy = "packages")
     private List<User> userList;
-    @OneToMany(mappedBy = "questionPackage")
-    private List<Question> questions;
+    @OneToMany(mappedBy = "actionsPackage")
+    private List<Action> actions;
 }

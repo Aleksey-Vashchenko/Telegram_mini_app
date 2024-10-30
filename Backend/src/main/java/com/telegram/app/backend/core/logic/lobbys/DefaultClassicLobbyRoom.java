@@ -1,6 +1,8 @@
 package com.telegram.app.backend.core.logic.lobbys;
 
-import com.telegram.app.backend.entity.Question;
+import com.telegram.app.backend.core.logic.service.actionService.ActionService;
+import com.telegram.app.backend.core.logic.service.actionService.ClassicActionService;
+import com.telegram.app.backend.entity.Action;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,16 +11,25 @@ import java.util.UUID;
 @Setter
 public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
 
+    private final ClassicActionService actionService;
 
-    private final short playerTurnCounter = 0;
-    public DefaultClassicLobbyRoom() {
+    private short playerTurnCounter = -1;
+    private final short levelFrom;
+    private final short levelTo;
+
+
+    public DefaultClassicLobbyRoom(short levelFrom, short levelTo, ClassicActionService actionService) {
         super(UUID.randomUUID());
+        this.actionService=actionService;
+        this.levelFrom = levelFrom;
+        this.levelTo = levelTo;
     }
 
     @Override
-    public Question generateQuestion() {
+    public Action generateQuestion() {
+        playerTurnCounter++;
         //TODO: add logic to generate questions
-        return null;
+        return actionService.generateClassicAction(levelFrom,levelTo,playerList.get(playerTurnCounter));
     }
 
     @Override

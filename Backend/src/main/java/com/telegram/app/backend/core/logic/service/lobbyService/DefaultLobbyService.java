@@ -1,13 +1,10 @@
-package com.telegram.app.backend.core.logic.service;
+package com.telegram.app.backend.core.logic.service.lobbyService;
 
 import com.telegram.app.backend.core.logic.lobbys.AbstractLobbyRoom;
 import com.telegram.app.backend.core.logic.lobbys.builders.ILobbyRoomBuilder;
 import com.telegram.app.backend.core.logic.dto.DefaultLobbyDto;
-import com.telegram.app.backend.core.logic.players.AbstractPlayer;
-import com.telegram.app.backend.entity.Question;
+import com.telegram.app.backend.entity.Action;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class DefaultLobbyService extends AbstractService<UUID, DefaultLobbyDto>{
@@ -25,7 +22,7 @@ public class DefaultLobbyService extends AbstractService<UUID, DefaultLobbyDto>{
     }
 
     @Override
-    public Question getQuestion(UUID gameId) {
+    public Action getQuestion(UUID gameId) {
         return this.lobbyMap.get(gameId).generateQuestion();
     }
 

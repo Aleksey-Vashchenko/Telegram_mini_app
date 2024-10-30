@@ -1,9 +1,9 @@
 package com.telegram.app.backend.core.logic.lobbys;
 
-import com.telegram.app.backend.entity.Question;
+import com.telegram.app.backend.entity.Action;
 
 public interface ILobby {
-    Question generateQuestion();
+    Action generateQuestion();
 
     void processAnswer(Object result);
 }

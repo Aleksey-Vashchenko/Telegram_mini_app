@@ -17,5 +17,5 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "package_id")
     )
-    private List<QuestionPackage> packages;
+    private List<ActionsPackage> packages;
 }

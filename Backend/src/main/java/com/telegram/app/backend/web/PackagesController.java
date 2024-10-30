@@ -1,6 +1,6 @@
 package com.telegram.app.backend.web;
 
-import com.telegram.app.backend.entity.QuestionPackage;
+import com.telegram.app.backend.entity.ActionsPackage;
 import com.telegram.app.backend.service.QuestionPackageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,12 +18,12 @@ public class PackagesController {
     private final QuestionPackageService questionPackageService;
 
     @GetMapping("/{userId}")
-    public List<QuestionPackage> getPackages(@PathVariable("userId")String userId){
+    public List<ActionsPackage> getPackages(@PathVariable("userId")String userId){
         return  questionPackageService.findPackagesByUser(userId);
     }
 
     @GetMapping
-    public List<QuestionPackage> getAll(){
+    public List<ActionsPackage> getAll(){
         return  questionPackageService.findAll();
     }
 }

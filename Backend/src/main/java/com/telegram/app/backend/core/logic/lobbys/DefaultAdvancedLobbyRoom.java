@@ -1,6 +1,7 @@
 package com.telegram.app.backend.core.logic.lobbys;
 
-import com.telegram.app.backend.entity.Question;
+import com.telegram.app.backend.entity.Action;
+import com.telegram.app.backend.core.logic.service.actionService.ActionService;
 import lombok.Setter;
 
 import java.util.UUID;
@@ -8,9 +9,12 @@ import java.util.UUID;
 @Setter
 public class DefaultAdvancedLobbyRoom extends AbstractLobbyRoom<UUID>
 {
+    private final ActionService actionService;
 
-    public DefaultAdvancedLobbyRoom() {
+    public DefaultAdvancedLobbyRoom(ActionService actionService) {
         super(UUID.randomUUID());
+        this.actionService = actionService;
+
     }
 
     @Override
@@ -19,7 +23,7 @@ public class DefaultAdvancedLobbyRoom extends AbstractLobbyRoom<UUID>
     }
 
     @Override
-    public Question generateQuestion() {
+    public Action generateQuestion() {
         return null;
     }
 

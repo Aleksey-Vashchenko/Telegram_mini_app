@@ -9,7 +9,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class AdvancedPlayer extends AbstractPlayer {
-    Set<Gender> preferredGenders;
     Short levelFrom;
     Short levelTo;
     Short pairId;
