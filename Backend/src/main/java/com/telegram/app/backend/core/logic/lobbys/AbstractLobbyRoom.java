@@ -9,7 +9,7 @@ import java.util.Objects;
 
 
 @Getter
-public abstract class AbstractLobbyRoom<ID_TYPE> implements ILobby<ID_TYPE> {
+public abstract class AbstractLobbyRoom<ID_TYPE> implements ILobby {
     protected final List<AbstractPlayer> playerList = new ArrayList<>();
     protected ID_TYPE id;
 
