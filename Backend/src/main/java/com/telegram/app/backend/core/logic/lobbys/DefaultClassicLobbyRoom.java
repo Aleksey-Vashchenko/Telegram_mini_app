@@ -1,13 +1,9 @@
 package com.telegram.app.backend.core.logic.lobbys;
 
-import com.telegram.app.backend.core.logic.players.AbstractPlayer;
-import com.telegram.app.backend.core.logic.players.ClassicPlayer;
 import com.telegram.app.backend.entity.Question;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 @Getter
 @Setter
@@ -25,6 +21,10 @@ public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
         return null;
     }
 
+    @Override
+    public void processAnswer(Object result) {
+//TODO: add logic
+    }
 
     @Override
     public int hashCode() {
@@ -35,4 +35,6 @@ public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
+
 }

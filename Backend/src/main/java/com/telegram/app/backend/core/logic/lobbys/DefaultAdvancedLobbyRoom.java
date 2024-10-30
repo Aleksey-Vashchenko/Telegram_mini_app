@@ -13,6 +13,10 @@ public class DefaultAdvancedLobbyRoom extends AbstractLobbyRoom<UUID>
         super(UUID.randomUUID());
     }
 
+    @Override
+    public void processAnswer(Object result) {
+        //TODO: add logic
+    }
 
     @Override
     public Question generateQuestion() {

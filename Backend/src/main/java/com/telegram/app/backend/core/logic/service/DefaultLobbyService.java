@@ -32,4 +32,8 @@ public class DefaultLobbyService extends AbstractService<UUID, DefaultLobbyDto>{
     public DefaultLobbyService(ILobbyRoomBuilder<UUID, DefaultLobbyDto> builder) {
         super(builder);
     }
+
+    public void processQuestion(UUID uuid, Object result) {
+        lobbyMap.get(uuid).processAnswer(result);
+    }
 }
