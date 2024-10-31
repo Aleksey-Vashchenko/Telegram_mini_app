@@ -20,11 +20,6 @@ public abstract class AbstractLobbyRoom<ID_TYPE> implements ILobby {
         DefaultAdvancedLobbyRoom lobbyRoom = (DefaultAdvancedLobbyRoom) o;
         return  Objects.equals(id, lobbyRoom.id);
     }
-
-    public void addPlayer(AbstractPlayer player){
-        playerList.add(player);
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);

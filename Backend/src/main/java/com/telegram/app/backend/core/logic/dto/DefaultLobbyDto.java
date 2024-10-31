@@ -14,10 +14,10 @@ public class DefaultLobbyDto {
     private SettingsMode gameType;
     @NotNull
     private List<DefaultPlayerDto> players;
-    private Integer difficultyFrom;
-    private Integer difficultyTo;
+    private Short difficultyFrom;
+    private Short difficultyTo;
     @NotNull
-    private List<Integer> packages;
+    private List<Short> packages;
 
     // Getters and Setters
 }

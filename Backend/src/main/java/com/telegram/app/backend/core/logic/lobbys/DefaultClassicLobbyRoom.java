@@ -1,14 +1,13 @@
 package com.telegram.app.backend.core.logic.lobbys;
 
-import com.telegram.app.backend.core.logic.service.actionService.ActionService;
+import com.telegram.app.backend.core.logic.dto.GenerateQuestionDto;
+import com.telegram.app.backend.core.logic.players.AbstractPlayer;
 import com.telegram.app.backend.core.logic.service.actionService.ClassicActionService;
 import com.telegram.app.backend.entity.Action;
-import lombok.Getter;
-import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-@Getter
-@Setter
 public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
 
     private final ClassicActionService actionService;
@@ -16,20 +15,29 @@ public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
     private short playerTurnCounter = -1;
     private final short levelFrom;
     private final short levelTo;
+    private final short playersAmount;
+    private Action lastAction;
+    private final List<Short> packages = new ArrayList<>();
 
 
-    public DefaultClassicLobbyRoom(short levelFrom, short levelTo, ClassicActionService actionService) {
+    public DefaultClassicLobbyRoom(short levelFrom, short levelTo, ClassicActionService actionService,
+                                   List<AbstractPlayer> playerList,List<Short> packages ) {
         super(UUID.randomUUID());
         this.actionService=actionService;
         this.levelFrom = levelFrom;
         this.levelTo = levelTo;
+        this.playerList.addAll(playerList);
+        this.packages.addAll(packages);
+        this.playersAmount = (short) playerList.size();
+
     }
 
     @Override
-    public Action generateQuestion() {
+    public Action generateQuestion(GenerateQuestionDto dto) {
         playerTurnCounter++;
-        //TODO: add logic to generate questions
-        return actionService.generateClassicAction(levelFrom,levelTo,playerList.get(playerTurnCounter));
+        lastAction= actionService.generateClassicAction(levelFrom,levelTo,playerList.get(playerTurnCounter%playersAmount),
+                packages,dto.getActionType());
+        return lastAction;
     }
 
     @Override

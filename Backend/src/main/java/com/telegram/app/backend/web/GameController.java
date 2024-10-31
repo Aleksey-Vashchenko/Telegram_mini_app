@@ -1,6 +1,8 @@
 package com.telegram.app.backend.web;
 
 import com.telegram.app.backend.core.logic.dto.DefaultLobbyDto;
+import com.telegram.app.backend.core.logic.dto.GenerateQuestionDto;
+import com.telegram.app.backend.core.logic.dto.response.MapResponse;
 import com.telegram.app.backend.core.logic.service.lobbyService.LobbyService;
 import com.telegram.app.backend.entity.Action;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +20,11 @@ import java.util.UUID;
 public class GameController {
     private final LobbyService<UUID, DefaultLobbyDto> lobbyService;
     @PostMapping("/{gameId}/questions")
-    public Action getQuestion(@PathVariable("gameId")UUID uuid){
-        return lobbyService.getQuestion(uuid);
+    public MapResponse getQuestion(@PathVariable("gameId")UUID uuid, @RequestBody GenerateQuestionDto dto){
+        Action action = lobbyService.getQuestion(uuid,dto);
+        MapResponse mapResponse = new MapResponse();
+        mapResponse.addData("action",action);
+        return mapResponse;
     }
     @PostMapping("/{gameId}/questions/process")
     public void processQuestion(@PathVariable("gameId")UUID uuid, @RequestBody Object result){
@@ -27,8 +32,10 @@ public class GameController {
     }
 
     @PostMapping
-    public ResponseEntity<UUID> createLobby(@RequestBody DefaultLobbyDto dto){
-        return new ResponseEntity<>(lobbyService.createLobby(dto), HttpStatus.OK);
+    public MapResponse createLobby(@RequestBody DefaultLobbyDto dto){
+        MapResponse mapResponse = new MapResponse();
+        mapResponse.addData("uuid",lobbyService.createLobby(dto));
+        return mapResponse;
     }
 
     @DeleteMapping("/{gameID}")
