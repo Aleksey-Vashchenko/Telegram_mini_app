@@ -17,14 +17,8 @@ public class ClassicActionService implements ActionService {
     private final QuestionRepository questionRepository;
     private final Random random = new Random();
 
-    public Action generateClassicAction(short levelFrom, short levelTo, AbstractPlayer abstractPlayer, List<Short> packages, ActionType type){
-        int choice = random.nextInt(3);
-        Set<Gender> doerSet = new HashSet<>();
-        doerSet.add(abstractPlayer.getGender());
-        doerSet.add(Gender.BOTH);
-        Set<Gender> targetSet = new HashSet<>(abstractPlayer.getPreferredGenders());
-        targetSet.add(Gender.BOTH);
-        return questionRepository.findSingleAction(levelFrom,levelTo,doerSet, targetSet,packages, type).get();
+    public Action generateClassicAction(short levelFrom, short levelTo, Set<Gender> doersSet, Set<Gender> targersSet, List<Short> packages, ActionType type){
+        return questionRepository.findSingleAction(levelFrom,levelTo,doersSet, targersSet,packages, type).get();
 //        switch (choice){
 //            //TODO: add processing null result
 //            case 0 ->;

@@ -1,13 +1,13 @@
 package com.telegram.app.backend.core.logic.lobbys;
 
+import com.telegram.app.backend.core.enums.Gender;
 import com.telegram.app.backend.core.logic.dto.GenerateQuestionDto;
 import com.telegram.app.backend.core.logic.players.AbstractPlayer;
 import com.telegram.app.backend.core.logic.service.actionService.ClassicActionService;
 import com.telegram.app.backend.entity.Action;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
 public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
 
     private final ClassicActionService actionService;
@@ -16,7 +16,6 @@ public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
     private final short levelFrom;
     private final short levelTo;
     private final short playersAmount;
-    private Action lastAction;
     private final List<Short> packages = new ArrayList<>();
 
 
@@ -35,9 +34,18 @@ public class DefaultClassicLobbyRoom extends AbstractLobbyRoom<UUID> {
     @Override
     public Action generateQuestion(GenerateQuestionDto dto) {
         playerTurnCounter++;
-        lastAction= actionService.generateClassicAction(levelFrom,levelTo,playerList.get(playerTurnCounter%playersAmount),
+        if(playerTurnCounter==playersAmount){
+            playerTurnCounter=0;
+        }
+        AbstractPlayer player = playerList.get(playerTurnCounter);
+        Set<Gender> doerSet = new HashSet<>(){{
+            add(player.getGender());
+        }};
+        Set<Gender> targetSet = new HashSet<>(){{
+            add(Gender.BOTH);
+        }};
+        return actionService.generateClassicAction(levelFrom,levelTo,doerSet,targetSet,
                 packages,dto.getActionType());
-        return lastAction;
     }
 
     @Override
